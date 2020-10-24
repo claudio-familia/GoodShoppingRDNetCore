@@ -1,0 +1,21 @@
+name: HerokuContainer
+ 
+on:
+  push:
+	branches:
+  	- master
+ 
+jobs:
+  build:
+	runs-on: ubuntu-latest
+ 
+	steps:
+  	- uses: actions/checkout@v1
+  	- name: Build and deploy the Docker image
+    	env:
+          goodshoppingrd: ${{ secrets.HEROKU_API_KEY }}
+      	6f62f01b-38fc-4f1c-8632-1d66b82954ba: ${{ 'lime-home-test' }}
+    	run: |
+      	docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+      	heroku container:push web -a $APP_NAME
+      	heroku container:release web -a $APP_NAME
