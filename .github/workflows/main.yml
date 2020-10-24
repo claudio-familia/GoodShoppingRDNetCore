@@ -13,8 +13,8 @@ jobs:
   	- uses: actions/checkout@v1
   	- name: Build and deploy the Docker image
     	env:
-          goodshoppingrd: ${{ secrets.HEROKU_API_KEY }}
-      	6f62f01b-38fc-4f1c-8632-1d66b82954ba: ${{ 'lime-home-test' }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      	APP_NAME: ${{ 'goodshoppingrd' }}
     	run: |
       	docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
       	heroku container:push web -a $APP_NAME
